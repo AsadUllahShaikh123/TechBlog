@@ -18,9 +18,11 @@
 	<!-- Banner -->
 	<%@include file="banner.jsp"%>
 
+	<!-- Cards -->
+	<%@include file="cards.jsp"%>
 
 
-
+	
 	<!-- jQuery library -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
