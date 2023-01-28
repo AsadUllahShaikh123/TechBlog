@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+.banner-background {
+	clip-path: polygon(50% 0%, 100% 0, 100% 100%, 74% 97%, 26% 96%, 0 100%, 0 0);
+}
+</style>
 </head>
 <body>
-	<div class="container-fluid p-0 m-0">
+	<div class="container-fluid p-0 m-0 banner-background">
 		<div class="jumbotron primary-background text-white">
 			<div class="container">
 				<h3 class="display-3">Welcome to Tech Blog</h3>
