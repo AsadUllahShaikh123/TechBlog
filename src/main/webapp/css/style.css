@@ -1,3 +1,6 @@
-body{
-	background:red;
+.primary-background{
+	background:#2196f3 !important;	
+}
+.bg-gray{
+	background:gray;
 }
