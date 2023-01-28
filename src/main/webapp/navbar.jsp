@@ -11,8 +11,8 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark primary-background">
-		<a class="navbar-brand" href="#"> <span class="fa fa-asterisk"></span>
-			Tech Blog
+		<a class="navbar-brand" href="index.jsp"> <span
+			class="fa fa-asterisk"></span> Tech Blog
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -40,6 +40,8 @@
 					</div></li>
 				<li class="nav-item"><a class="nav-link" href="#"><span
 						class="fa fa-address-card-o"></span> Contact</a></a></li>
+				<li class="nav-item"><a class="nav-link" href="login.jsp"><span
+						class="fa fa-user-circle"></span> login</a></a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"

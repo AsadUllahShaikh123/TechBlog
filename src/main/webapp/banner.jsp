@@ -27,9 +27,9 @@
 				<button class="btn btn-outline-light btn-lg">
 					<span class="fa fa-user-plus"></span> Start ! its Free
 				</button>
-				<button class="btn btn-outline-light btn-lg">
+				<a href="login.jsp" class="btn btn-outline-light btn-lg">
 					<span class="fa fa-user-circle fa-spin"></span> Login
-				</button>
+				</a>
 
 			</div>
 		</div>
