@@ -42,6 +42,8 @@
 						class="fa fa-address-card-o"></span> Contact</a></a></li>
 				<li class="nav-item"><a class="nav-link" href="login.jsp"><span
 						class="fa fa-user-circle"></span> login</a></a></li>
+				<li class="nav-item"><a class="nav-link" href="register_page.jsp"><span
+						class="fa fa-user-plus"></span> Signup</a></a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"

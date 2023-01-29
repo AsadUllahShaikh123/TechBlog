@@ -15,7 +15,7 @@ public class User {
 	public User() {}
 
 
-	public User(int id, String name, String email, String password, String gender, String about, Timestamp dateTime) {
+	public User(int id, String name, String email, String password, String gender, String about) {
 		
 		this.id = id;
 		this.name = name;
@@ -23,18 +23,17 @@ public class User {
 		this.password = password;
 		this.gender = gender;
 		this.about = about;
-		this.dateTime = dateTime;
 	}
 
 
-	public User(String name, String email, String password, String gender, String about, Timestamp dateTime) {
+	public User(String name, String email, String password, String gender, String about) {
 		
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.gender = gender;
 		this.about = about;
-		this.dateTime = dateTime;
+		
 	}
 
 
