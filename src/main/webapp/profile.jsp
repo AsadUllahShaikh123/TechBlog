@@ -98,40 +98,96 @@ if (user == null) {
 						<h5 class="modal-title " id="exampleModalLabel"><%=user.getName()%></h5>
 					</div>
 				</div>
-				<table class="table">
+				<div>
+					<table class="table" id="profile-details">
 
-					<tbody>
-						<tr>
-							<th scope="row">ID :</th>
-							<td><%=user.getId()%></td>
+						<tbody>
+							<tr>
+								<th scope="row">ID :</th>
+								<td><%=user.getId()%></td>
 
-						</tr>
-						<tr>
-							<th scope="row">Email :</th>
-							<td><%=user.getEmail()%></td>
+							</tr>
+							<tr>
+								<th scope="row">Email :</th>
+								<td><%=user.getEmail()%></td>
 
-						</tr>
-						<tr>
-							<th scope="row">Gender :</th>
-							<td><%=user.getGender()%></td>
+							</tr>
+							<tr>
+								<th scope="row">Gender :</th>
+								<td><%=user.getGender()%></td>
 
-						</tr>
-						<tr>
-							<th scope="row">Status :</th>
-							<td><%=user.getAbout()%></td>
+							</tr>
+							<tr>
+								<th scope="row">Status :</th>
+								<td><%=user.getAbout()%></td>
 
-						</tr>
-						<tr>
-							<th scope="row">Registered on :</th>
-							<td><%=user.getDateTime().toString()%></td>
+							</tr>
+							<tr>
+								<th scope="row">Registered on :</th>
+								<td><%=user.getDateTime().toString()%></td>
 
-						</tr>
-					</tbody>
-				</table>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- Edit Profile  -->
+				<div id="profile-edit" class="text-center" style="display: none">
+					<h3 class="mt-3">Please Edit Carefully</h3>
+					<form action="">
+						<table class="table" id="profile-details">
+
+							<tbody>
+								<tr>
+									<td scope="row">ID :</td>
+									<td><%=user.getId()%></td>
+
+								</tr>
+								<tr>
+									<td scope="row">Email :</td>
+									<td><input type="email" class="form-control" name="email"
+										value=<%=user.getEmail()%> /></td>
+								</tr>
+								<tr>
+									<td scope="row">Name :</td>
+									<td><input type="text" class="form-control"
+										name="user_name" value=<%=user.getName()%> /></td>
+								</tr>
+								<tr>
+									<td scope="row">Password :</td>
+									<td><input type="password" class="form-control"
+										name="password" value=<%=user.getPassword()%> /></td>
+								</tr>
+								<tr>
+									<td scope="row">Gender :</td>
+									<td><%=user.getGender()%></td>
+								</tr>
+								<tr>
+									<td scope="row">About :</td>
+									<td><textarea class="form-control" rows="3"
+											style="scroll: none;">
+										<%=user.getAbout()%>
+									</textarea></td>
+								</tr>
+								<tr>
+									<td scope="row">New Profile :</td>
+									<td><input type="file" class="form-control"
+										name="new_profile" /></td>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="container text-center">
+							<button type="submit" class="btn btn-outline-primary">Save</button>
+						</div>
+					</form>
+				</div>
+
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">EDIT</button>
+					<button type="button" id="edit-profile-button"
+						class="btn btn-primary">EDIT</button>
 				</div>
 			</div>
 		</div>
@@ -150,5 +206,28 @@ if (user == null) {
 	<!-- Latest compiled JavaScript -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			let editStatus = false;
+			$('#edit-profile-button').click(function() {
+				if (editStatus == false) {
+					$('#profile-edit').show();
+					$('#profile-details').hide();
+					editStatus = true;
+					$(this).text("Back");
+				} else {
+					$('#profile-edit').hide();
+					$('#profile-details').show();
+					editStatus = false;
+					$(this).text("Edit");
+				}
+			})
+		})
+	</script>
 </body>
 </html>
