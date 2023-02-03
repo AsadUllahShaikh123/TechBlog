@@ -1,3 +1,4 @@
+<%@page import="com.techblog.entities.Message"%>
 <%@page import="com.techblog.entities.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -74,6 +75,22 @@ if (user == null) {
 
 	<!-- Navbar Closed -->
 
+	<%
+	Message message = (Message) session.getAttribute("message");
+	if (message != null) {
+	%>
+
+	<div>
+		<div class="alert <%=message.getCssClass()%>" role="alert">
+			<%=message.getContent()%>
+		</div>
+	</div>
+
+	<%
+	session.removeAttribute("message");
+
+	}
+	%>
 
 	<!-- Start of Profile Modal -->
 
@@ -133,7 +150,8 @@ if (user == null) {
 				<!-- Edit Profile  -->
 				<div id="profile-edit" class="text-center" style="display: none">
 					<h3 class="mt-3">Please Edit Carefully</h3>
-					<form action="EditServlet" method = "post" enctype="multipart/form-data">
+					<form action="EditServlet" method="post"
+						enctype="multipart/form-data">
 						<table class="table" id="profile-details">
 
 							<tbody>
@@ -149,8 +167,8 @@ if (user == null) {
 								</tr>
 								<tr>
 									<td scope="row">Name :</td>
-									<td><input type="text" class="form-control"
-										name="name" value=<%=user.getName()%> /></td>
+									<td><input type="text" class="form-control" name="name"
+										value=<%=user.getName()%> /></td>
 								</tr>
 								<tr>
 									<td scope="row">Password :</td>
@@ -170,8 +188,7 @@ if (user == null) {
 								</tr>
 								<tr>
 									<td scope="row">New Profile :</td>
-									<td><input type="file" class="form-control"
-										name="profile" /></td>
+									<td><input type="file" class="form-control" name="profile" /></td>
 								</tr>
 
 							</tbody>
