@@ -133,7 +133,7 @@ if (user == null) {
 				<!-- Edit Profile  -->
 				<div id="profile-edit" class="text-center" style="display: none">
 					<h3 class="mt-3">Please Edit Carefully</h3>
-					<form action="">
+					<form action="EditServlet" method = "post" enctype="multipart/form-data">
 						<table class="table" id="profile-details">
 
 							<tbody>
@@ -150,7 +150,7 @@ if (user == null) {
 								<tr>
 									<td scope="row">Name :</td>
 									<td><input type="text" class="form-control"
-										name="user_name" value=<%=user.getName()%> /></td>
+										name="name" value=<%=user.getName()%> /></td>
 								</tr>
 								<tr>
 									<td scope="row">Password :</td>
@@ -163,7 +163,7 @@ if (user == null) {
 								</tr>
 								<tr>
 									<td scope="row">About :</td>
-									<td><textarea class="form-control" rows="3"
+									<td><textarea class="form-control" name="about" rows="3"
 											style="scroll: none;">
 										<%=user.getAbout()%>
 									</textarea></td>
@@ -171,7 +171,7 @@ if (user == null) {
 								<tr>
 									<td scope="row">New Profile :</td>
 									<td><input type="file" class="form-control"
-										name="new_profile" /></td>
+										name="profile" /></td>
 								</tr>
 
 							</tbody>

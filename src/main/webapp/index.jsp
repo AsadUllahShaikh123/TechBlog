@@ -15,7 +15,7 @@
 	<!-- Navbar  -->
 	<%@include file="navbar.jsp"%>
 
-	<!-- Banner -->
+	<!-- Banner --> 
 	<%@include file="banner.jsp"%>
 
 	<!-- Cards -->

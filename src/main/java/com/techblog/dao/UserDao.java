@@ -39,6 +39,7 @@ public class UserDao {
 		return userSaved;
 	}
 	public User getUserByEmailAndPassword(String email, String password) {
+
 		
 		User user = null;
 		
@@ -72,5 +73,28 @@ public class UserDao {
 		}
 		
 		return user;
+	}
+
+	public boolean updateUser(User user) {
+		boolean update = false;
+		try {
+			String query = "update user set name = ? , email=? , password=? , gender=? , about=? , profile=? "
+					+ "where id =? ";
+			PreparedStatement statement = con.prepareStatement(query);
+			
+			statement.setString(1, user.getName());
+			statement.setString(2, user.getEmail());
+			statement.setString(3, user.getPassword());
+			statement.setString(4, user.getGender());
+			statement.setString(5, user.getAbout());
+			statement.setString(6, user.getProfile());
+			statement.setInt(7,user.getId());
+			
+			statement.executeUpdate();
+			update = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return update;
 	}
 }
