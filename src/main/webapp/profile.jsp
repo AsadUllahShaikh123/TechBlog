@@ -1,3 +1,7 @@
+<%@page import="com.techblog.entities.Category"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.techblog.helper.ConnectionProvider"%>
+<%@page import="com.techblog.dao.PostDao"%>
 <%@page import="com.techblog.entities.Message"%>
 <%@page import="com.techblog.entities.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -58,7 +62,8 @@ if (user == null) {
 					</div></li>
 				<li class="nav-item"><a class="nav-link" href="#"><span
 						class="fa fa-address-card-o"></span> Contact</a></a></li>
-				<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#postModal"><span
+				<li class="nav-item"><a class="nav-link" href="#"
+					data-toggle="modal" data-target="#postModal"><span
 						class="fa fa-asterisk"></span> Do Post</a></a></li>
 
 
@@ -68,7 +73,7 @@ if (user == null) {
 				<li class="nav-item"><a class="nav-link" href="#!"
 					data-toggle="modal" data-target="#profileModal"><span
 						class="fa fa-user-circle"></span> <%=user.getName()%></a></a></li>
-				<li class="nav-item"><a class="nav-link" href="LogoutServlet" ><span
+				<li class="nav-item"><a class="nav-link" href="LogoutServlet"><span
 						class="fa fa-user-plus"></span> Logout</a></a></li>
 			</ul>
 
@@ -76,6 +81,8 @@ if (user == null) {
 	</nav>
 
 	<!-- Navbar Closed -->
+
+	<!-- Alert Message  -->
 
 	<%
 	Message message = (Message) session.getAttribute("message");
@@ -93,8 +100,8 @@ if (user == null) {
 
 	}
 	%>
+	<!-- End of Alert Message -->
 
-	
 
 	<!-- Profile Modal -->
 	<div class="modal fade" id="profileModal" tabindex="-1"
@@ -208,36 +215,70 @@ if (user == null) {
 			</div>
 		</div>
 	</div>
-	
+
 
 	<!-- End of Profile Modal -->
 
 
+
+
 	<!-- Post Modal -->
-		
-		<!-- Button trigger modal -->
+	<div class="modal fade" id="postModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
 
+					<form action="AddPostServlet" method="post">
+						<div class="form-group">
+							<select class="form-control">
+								<option selected disabled>---- Select Category ----- </option>
+								<% 
+									PostDao dao = new PostDao(ConnectionProvider.getConnection());
+								    ArrayList<Category> list = dao.getAllCategories();
+								    for(Category category : list){
+								    	
+								%>
+								<option><%= category.getName() %></option>
+								
+								<% } %>
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="text" placeholder="Enter post Title"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" style="height: 200px;" placeholder="Enter your content">
+						</textarea>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" style="height: 200px;" placeholder="Enter your program(if any )">
+						</textarea>
+						</div>
+						<div class="form-group">
+							<label>Select your pic ...</label>
+							<br/>
+							<input type="file"/>
+						</div>
+					</form>
 
-<!-- Modal -->
-<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- End of Post Modal  -->
 
 
@@ -255,6 +296,7 @@ if (user == null) {
 
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<!-- Sweet Alert Library -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<script>
