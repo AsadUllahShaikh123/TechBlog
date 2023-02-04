@@ -58,6 +58,8 @@ if (user == null) {
 					</div></li>
 				<li class="nav-item"><a class="nav-link" href="#"><span
 						class="fa fa-address-card-o"></span> Contact</a></a></li>
+				<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#postModal"><span
+						class="fa fa-asterisk"></span> Do Post</a></a></li>
 
 
 			</ul>
@@ -66,7 +68,7 @@ if (user == null) {
 				<li class="nav-item"><a class="nav-link" href="#!"
 					data-toggle="modal" data-target="#profileModal"><span
 						class="fa fa-user-circle"></span> <%=user.getName()%></a></a></li>
-				<li class="nav-item"><a class="nav-link" href="LogoutServlet"><span
+				<li class="nav-item"><a class="nav-link" href="LogoutServlet" ><span
 						class="fa fa-user-plus"></span> Logout</a></a></li>
 			</ul>
 
@@ -92,12 +94,9 @@ if (user == null) {
 	}
 	%>
 
-	<!-- Start of Profile Modal -->
+	
 
-	<!-- Button trigger modal -->
-
-
-	<!-- Modal -->
+	<!-- Profile Modal -->
 	<div class="modal fade" id="profileModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -209,8 +208,38 @@ if (user == null) {
 			</div>
 		</div>
 	</div>
+	
 
 	<!-- End of Profile Modal -->
+
+
+	<!-- Post Modal -->
+		
+		<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- End of Post Modal  -->
+
 
 	<!-- jQuery library -->
 	<script
