@@ -236,9 +236,9 @@ if (user == null) {
 				</div>
 				<div class="modal-body">
 
-					<form action="AddPostServlet" method="post">
+					<form id="add-post-form" action="AddPostServlet" method="post">
 						<div class="form-group">
-							<select class="form-control">
+							<select class="form-control" name="cid">
 								<option selected disabled>---- Select Category ----- </option>
 								<% 
 									PostDao dao = new PostDao(ConnectionProvider.getConnection());
@@ -246,35 +246,33 @@ if (user == null) {
 								    for(Category category : list){
 								    	
 								%>
-								<option><%= category.getName() %></option>
+								<option value=<%= category.getCid() %>><%= category.getName() %></option>
 								
 								<% } %>
 							</select>
 						</div>
 						<div class="form-group">
-							<input type="text" placeholder="Enter post Title"
+							<input type="text" name="pTitle" placeholder="Enter post Title"
 								class="form-control" />
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" style="height: 200px;" placeholder="Enter your content">
+							<textarea name="pContent" class="form-control" style="height: 200px;" placeholder="Enter your content">
 						</textarea>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" style="height: 200px;" placeholder="Enter your program(if any )">
+							<textarea name="pCode" class="form-control" style="height: 200px;" placeholder="Enter your program(if any )">
 						</textarea>
 						</div>
 						<div class="form-group">
 							<label>Select your pic ...</label>
 							<br/>
-							<input type="file"/>
+							<input type="file" name="pic"/>
+						</div>
+						<div class="container text-center">
+							<button type="submit" class="btn btn-outline-primary">Post</button>
 						</div>
 					</form>
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>
 		</div>
@@ -317,5 +315,42 @@ if (user == null) {
 			})
 		})
 	</script>
+	<!-- Now Add POst Js  -->
+	
+	<script>
+	
+		$(document).ready(function() {
+			<!-- This Function is called when form is submitted -->
+			$('#add-post-form').on("submit", function (event){
+				event.preventDefault();
+				console.log("You have clicked on submit button");
+				
+				let form = new FormData(this);
+				
+				// now requesting to the server 
+				
+				$.ajax({
+					url:"AddPostServlet",
+					type:'POST',
+					data : form,
+					success:((data, textStatus, jqXHR)=>{
+						// success
+						console.log(data,"data")
+					}),
+					error:((jqXHR, textStatus, errorThrown)=>{
+						// error 
+					}),
+					processData: false,
+					contentType: false
+				})
+				
+			})
+		})
+	
+	</script>
+	
+	
+	
+	
 </body>
 </html>

@@ -45,7 +45,7 @@ public class UserDao {
 		
 		String query= "select * from user where email=? and password=?";
 		try {
-			PreparedStatement statement = con.prepareStatement(query);
+			PreparedStatement statement = this.con.prepareStatement(query);
 			
 			statement.setString(1, email);
 			statement.setString(2, password);

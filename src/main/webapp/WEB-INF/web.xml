@@ -28,6 +28,12 @@
   	<description></description>
   	<servlet-class>com.techblog.servlets.EditServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AddPostServlet</servlet-name>
+  	<display-name>AddPostServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.techblog.servlets.AddPostServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/registerServlet</url-pattern>
@@ -43,5 +49,9 @@
   <servlet-mapping>
   	<servlet-name>EditServlet</servlet-name>
   	<url-pattern>/EditServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddPostServlet</servlet-name>
+  	<url-pattern>/AddPostServlet</url-pattern>
   </servlet-mapping>
 </web-app>
