@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.techblog.entities.Category;
 import com.techblog.entities.Post;
@@ -69,5 +71,62 @@ public class PostDao {
 		
 		return save;
 	}
-
+	
+	
+	// get All Posts 
+	public List<Post> getAllPosts(){
+		List<Post> list = new ArrayList<>();
+		// fetch All Posts 
+		
+		try {
+			PreparedStatement statement = con.prepareStatement("select * from posts");
+			ResultSet set = statement.executeQuery();
+			while(set.next()) {
+				int pid = set.getInt("pid");
+				String pTitle = set.getString("pTitle");
+				String pContent = set.getString("pContent");
+				String pCode = set.getString("pCode");
+				String pPic = set.getString("pPic");
+				Timestamp date = set.getTimestamp("pDate");
+				int cid = set.getInt("cid");
+				int userId = set.getInt("userId");
+				Post post = new Post(pid,pTitle,pContent,pCode,pPic,date,cid,userId);
+				
+				list.add(post);
+				
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	// get a  Post by specific id  
+	public List<Post> getPostByCatId(int cid){
+		List<Post> list = new ArrayList<>();
+		// fetch specific post by id  
+		try {
+			PreparedStatement statement = con.prepareStatement("select * from posts where cid =?");
+			statement.setInt(1, cid);
+			ResultSet set = statement.executeQuery();
+			while(set.next()) {
+				int pid = set.getInt("pid");
+				String pTitle = set.getString("pTitle");
+				String pContent = set.getString("pContent");
+				String pCode = set.getString("pCode");
+				String pPic = set.getString("pPic");
+				Timestamp date = set.getTimestamp("pDate");
+				int userId = set.getInt("userId");
+				Post post = new Post(pid,pTitle,pContent,pCode,pPic,date,cid,userId);
+				
+				list.add(post);
+				
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
 }

@@ -101,40 +101,37 @@ if (user == null) {
 	}
 	%>
 	<!-- End of Alert Message -->
-	
+
 	<!-- Main body  -->
-		<main>
-			<div class="container">
-				<div class="row mt-4">
-					<!-- First Row  -->
-					<div class="col-md-4">
-						<!-- Categories -->
-						
-						<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-    All Posts
-  </a>
-  <%
-  
-  	PostDao dao = new PostDao(ConnectionProvider.getConnection());
-    ArrayList<Category> list = dao.getAllCategories();
-    for(Category c : list){
-    	
-  %>
-   <a href="#" class="list-group-item list-group-item-action"><%= c.getName() %></a>
-  <%
-  	} 
-  %>
-  
-  
-</div>
-					</div>
-					<div class="col-md-8">
-						<!-- Posts -->
+	<main>
+		<div class="container">
+			<div class="row mt-4">
+				<!-- First Row  -->
+				<div class="col-md-4">
+					<!-- Categories -->
+
+					<div class="list-group">
+						<a href="#" class="list-group-item list-group-item-action active"
+							aria-current="true"> All Posts </a>
+						<%
+						PostDao dao = new PostDao(ConnectionProvider.getConnection());
+						ArrayList<Category> list = dao.getAllCategories();
+						for (Category c : list) {
+						%>
+						<a href="#" class="list-group-item list-group-item-action"><%=c.getName()%></a>
+						<%
+						}
+						%>
+
+
 					</div>
 				</div>
+				<div class="col-md-8">
+					<!-- Posts -->
+				</div>
 			</div>
-		</main>
+		</div>
+	</main>
 	<!-- Main Body End -->
 
 
@@ -274,15 +271,16 @@ if (user == null) {
 					<form id="add-post-form" action="AddPostServlet" method="post">
 						<div class="form-group">
 							<select class="form-control" name="cid">
-								<option selected disabled>---- Select Category ----- </option>
-								<% 
-									// Here the list has came from the above categories
-								    for(Category category : list){
-								    	
+								<option selected disabled>---- Select Category -----</option>
+								<%
+								// Here the list has came from the above categories
+								for (Category category : list) {
 								%>
-								<option value=<%= category.getCid() %>><%= category.getName() %></option>
-								
-								<% } %>
+								<option value=<%=category.getCid()%>><%=category.getName()%></option>
+
+								<%
+								}
+								%>
 							</select>
 						</div>
 						<div class="form-group">
@@ -290,17 +288,18 @@ if (user == null) {
 								class="form-control" />
 						</div>
 						<div class="form-group">
-							<textarea name="pContent" class="form-control" style="height: 200px;" placeholder="Enter your content">
+							<textarea name="pContent" class="form-control"
+								style="height: 200px;" placeholder="Enter your content">
 						</textarea>
 						</div>
 						<div class="form-group">
-							<textarea name="pCode" class="form-control" style="height: 200px;" placeholder="Enter your program(if any )">
+							<textarea name="pCode" class="form-control"
+								style="height: 200px;" placeholder="Enter your program(if any )">
 						</textarea>
 						</div>
 						<div class="form-group">
-							<label>Select your pic ...</label>
-							<br/>
-							<input type="file" name="pic"/>
+							<label>Select your pic ...</label> <br /> <input type="file"
+								name="pic" />
 						</div>
 						<div class="container text-center">
 							<button type="submit" class="btn btn-outline-primary">Post</button>
@@ -350,7 +349,7 @@ if (user == null) {
 		})
 	</script>
 	<!-- Now Add POst Js  -->
-	
+
 	<script>
 	
 		$(document).ready(function() {
@@ -389,9 +388,9 @@ if (user == null) {
 		})
 	
 	</script>
-	
-	
-	
-	
+
+
+
+
 </body>
 </html>
