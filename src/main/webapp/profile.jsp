@@ -101,6 +101,41 @@ if (user == null) {
 	}
 	%>
 	<!-- End of Alert Message -->
+	
+	<!-- Main body  -->
+		<main>
+			<div class="container">
+				<div class="row mt-4">
+					<!-- First Row  -->
+					<div class="col-md-4">
+						<!-- Categories -->
+						
+						<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+    All Posts
+  </a>
+  <%
+  
+  	PostDao dao = new PostDao(ConnectionProvider.getConnection());
+    ArrayList<Category> list = dao.getAllCategories();
+    for(Category c : list){
+    	
+  %>
+   <a href="#" class="list-group-item list-group-item-action"><%= c.getName() %></a>
+  <%
+  	} 
+  %>
+  
+  
+</div>
+					</div>
+					<div class="col-md-8">
+						<!-- Posts -->
+					</div>
+				</div>
+			</div>
+		</main>
+	<!-- Main Body End -->
 
 
 	<!-- Profile Modal -->
@@ -241,8 +276,7 @@ if (user == null) {
 							<select class="form-control" name="cid">
 								<option selected disabled>---- Select Category ----- </option>
 								<% 
-									PostDao dao = new PostDao(ConnectionProvider.getConnection());
-								    ArrayList<Category> list = dao.getAllCategories();
+									// Here the list has came from the above categories
 								    for(Category category : list){
 								    	
 								%>
