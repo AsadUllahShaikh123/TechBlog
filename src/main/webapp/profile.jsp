@@ -333,12 +333,19 @@ if (user == null) {
 					url:"AddPostServlet",
 					type:'POST',
 					data : form,
-					success:((data, textStatus, jqXHR)=>{
+					success:( function (data, textStatus, jqXHR){
 						// success
-						console.log(data,"data")
+						console.log(data,'done--->');
+						if(data.trim() == 'done'){
+							swal("Good job!","saved successfully","success");
+						}else{
+							swal("Error!!","Something went wrong try again...","error");
+						}
 					}),
-					error:((jqXHR, textStatus, errorThrown)=>{
+					error:(function (jqXHR, textStatus, errorThrown){
 						// error 
+						swal("Error!!","Something went wrong try again...","error");
+
 					}),
 					processData: false,
 					contentType: false
