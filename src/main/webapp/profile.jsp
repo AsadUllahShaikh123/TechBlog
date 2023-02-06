@@ -126,9 +126,18 @@ if (user == null) {
 
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-8" >
 					<!-- Posts -->
+					<div class="container text-center" id="loader">
+						<i class="fa fa-refresh fa-4x fa-spin"></i>
+						<h3 class="mt-2">Loading...</h3>
+					</div>
+					<div class="container-fluid" id="post-container">
+				
+					</div>
 				</div>
+				
+				
 			</div>
 		</div>
 	</main>
@@ -387,6 +396,20 @@ if (user == null) {
 			})
 		})
 	
+	</script>
+	
+	<!-- Loading POst using AJAX -->
+	<script>
+	
+		$(document).ready(function (){
+			$.ajax({
+				url:"load_posts.jsp",
+				success:function(data, textStatus, jqXHR){
+					$('#loader').hide(); 
+					$('#post-container').html(data);
+				}
+			})
+		})
 	</script>
 
 
