@@ -31,6 +31,27 @@ Post p = post.getPostByPostId(pid);
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<style>
+	.post-title{
+		font-weight: 100;
+		font-size: 30px;
+	}
+	.post-content{
+		font-weight : 100;
+		font-size : 25px;
+	}
+	.post-date{
+		font-style : italic;
+		font-weight : bold;
+	}
+	.post-user-info{
+		font-size : 20px;
+	}
+	.row-user {
+		border : 1px solid #e2e2e2;
+		padding-top : 15px;
+	}
+</style>
 <title><%=p.getpTitle()%> || Techblog</title>
 </head>
 <body>
@@ -47,9 +68,9 @@ Post p = post.getPostByPostId(pid);
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="profile.jsp"><span
-						class="fa fa-bell-o"></span> LearnCode With Durgesh <span
-						class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="profile.jsp"><span class="fa fa-bell-o"></span> LearnCode
+						With Durgesh <span class="sr-only">(current)</span></a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -90,19 +111,33 @@ Post p = post.getPostByPostId(pid);
 			<div class="col-md-6 offset-md-3">
 				<div class="card">
 					<div class="card-header primary-background text-white">
-						<h4><%=p.getpTitle()%></h4>
+						<h4 class="post-title"><%=p.getpTitle()%></h4>
 					</div>
-					
+
 					<div class="card-body">
-					<img class="card-img-top my-2" src="blog_pics/<%=p.getpPic()%>"
-				alt="Card img cap" />
-						<p><%=p.getpContent()%></p>
+						<img class="card-img-top my-2" src="blog_pics/<%=p.getpPic()%>"
+							alt="Card img cap" />
+							
+						<div class="row my-3 row-user">
+							<div class="col-md-7">
+							<p class="post-user-info">
+								<a href="#!">Durgesh Tiwari</a> has posted : 
+							</p>
+							</div>
+							<div class="col-md-5">
+								<p class="post-date"><%= p.getpDate().toLocaleString() %></p>
+							</div>
+						</div>	
+							
+						<p class="post-content"><%=p.getpContent()%></p>
 						<br /> <br />
-						<pre><%=p.getpCode()%></pre>
+						<div class="post-code">
+							<pre><%=p.getpCode()%></pre>
+						</div>
 						<div class="card-footer  primary-background">
 							<a href="#!" class="btn btn-outline-light btn-sm"><i
-								class="fa fa-thumbs-o-up"></i><span>10</span></a>  <a
-								href="#!" class="btn btn-outline-light btn-sm"><i
+								class="fa fa-thumbs-o-up"></i><span>10</span></a> <a href="#!"
+								class="btn btn-outline-light btn-sm"><i
 								class="fa fa-commenting-o"></i><span>20</span></a>
 
 						</div>
