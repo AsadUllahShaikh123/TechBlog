@@ -1,4 +1,6 @@
 
+<%@page import="java.text.DateFormat"%>
+<%@page import="com.techblog.dao.UserDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.techblog.entities.Category"%>
 <%@page import="com.techblog.entities.Post"%>
@@ -120,12 +122,13 @@ Post p = post.getPostByPostId(pid);
 							
 						<div class="row my-3 row-user">
 							<div class="col-md-7">
+							<% UserDao dao = new UserDao(ConnectionProvider.getConnection()); %>
 							<p class="post-user-info">
-								<a href="#!">Durgesh Tiwari</a> has posted : 
+								<a href="#!"><%= dao.getUserByUserId(p.getUserId()).getName() %></a> has posted : 
 							</p>
 							</div>
 							<div class="col-md-5">
-								<p class="post-date"><%= p.getpDate().toLocaleString() %></p>
+								<p class="post-date"><%= DateFormat.getDateTimeInstance().format(p.getpDate()) %></p>
 							</div>
 						</div>	
 							
