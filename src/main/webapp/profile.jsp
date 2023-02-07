@@ -8,7 +8,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ page errorPage="error_page.jsp"%>
-
+<!-- Validation  -->
 <%
 User user = (User) session.getAttribute("currentUser");
 if (user == null) {
