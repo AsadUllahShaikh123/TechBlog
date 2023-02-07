@@ -111,14 +111,14 @@ if (user == null) {
 					<!-- Categories -->
 
 					<div class="list-group">
-						<a href="#" onclick="getPosts(0)" class="list-group-item list-group-item-action active"
+						<a href="#" onclick="getPosts(0, this)" class="c-link list-group-item list-group-item-action active"
 							aria-current="true"> All Posts </a>
 						<%
 						PostDao dao = new PostDao(ConnectionProvider.getConnection());
 						ArrayList<Category> list = dao.getAllCategories();
 						for (Category c : list) {
 						%>
-						<a href="#" onclick ="getPosts(<%= c.getCid()%>)"class="list-group-item list-group-item-action"><%=c.getName()%></a>
+						<a href="#" onclick ="getPosts(<%= c.getCid()%>, this)"class="c-link list-group-item list-group-item-action"><%=c.getName()%></a>
 						<%
 						}
 						%>
@@ -400,21 +400,25 @@ if (user == null) {
 	
 	<!-- Loading POst using AJAX -->
 	<script>
-		function getPosts(catId){
+		function getPosts(catId , clickedCategoryObject){
 			$("#loader").show();
 			$("#post-container").hide();
+			
+			$('.c-link').removeClass('active');
 			$.ajax({
 				url:"load_posts.jsp",
 				data:{cid:catId},
 				success:function(data, textStatus, jqXHR){
 					$('#loader').hide();
 					$("#post-container").show();
+					$(clickedCategoryObject).addClass('active');
 					$('#post-container').html(data);
 				}
 			})
 		}
 		$(document).ready(function (){
-			getPosts(0);
+			let allPostsRef = $('.c-link')[0]
+			getPosts(0,allPostsRef);
 		})
 	</script>
 
