@@ -111,14 +111,14 @@ if (user == null) {
 					<!-- Categories -->
 
 					<div class="list-group">
-						<a href="#" class="list-group-item list-group-item-action active"
+						<a href="#" onclick="getPosts(0)" class="list-group-item list-group-item-action active"
 							aria-current="true"> All Posts </a>
 						<%
 						PostDao dao = new PostDao(ConnectionProvider.getConnection());
 						ArrayList<Category> list = dao.getAllCategories();
 						for (Category c : list) {
 						%>
-						<a href="#" class="list-group-item list-group-item-action"><%=c.getName()%></a>
+						<a href="#" onclick ="getPosts(<%= c.getCid()%>)"class="list-group-item list-group-item-action"><%=c.getName()%></a>
 						<%
 						}
 						%>
@@ -400,15 +400,21 @@ if (user == null) {
 	
 	<!-- Loading POst using AJAX -->
 	<script>
-	
-		$(document).ready(function (){
+		function getPosts(catId){
+			$("#loader").show();
+			$("#post-container").hide();
 			$.ajax({
 				url:"load_posts.jsp",
+				data:{cid:catId},
 				success:function(data, textStatus, jqXHR){
-					$('#loader').hide(); 
+					$('#loader').hide();
+					$("#post-container").show();
 					$('#post-container').html(data);
 				}
 			})
+		}
+		$(document).ready(function (){
+			getPosts(0);
 		})
 	</script>
 

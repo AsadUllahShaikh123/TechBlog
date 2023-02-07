@@ -7,7 +7,18 @@
 <%
 
 	PostDao dao = new PostDao(ConnectionProvider.getConnection());
-	List<Post> posts = dao.getAllPosts();
+	int cid = Integer.parseInt(request.getParameter("cid"));
+	List<Post> posts = null;
+	if(cid == 0 ){
+		posts = dao.getAllPosts();
+	}
+	else {
+		posts = dao.getPostByCatId(cid);
+	}
+	if(posts.size()==0){
+		out.println("<h3 class= 'display-3 text-center'>There is nothing to show in this category");
+		return;
+	}
 	for(Post p : posts ){
 			
 %>
